@@ -15,6 +15,17 @@ interface JsonFormControlOptions {
   step?: string;
   icon?: string;
 }
+
+interface JsonFormSelectOptions {
+  value: string | number;
+  label: string;
+}
+
+interface JsonFormTextAreaOptions {
+  cols?: number;
+  rows?: number;
+}
+
 export interface JsonFormControls {
   name: string;
   label: string;
@@ -23,6 +34,10 @@ export interface JsonFormControls {
   options?: JsonFormControlOptions;
   required: boolean;
   validators: JsonFormValidators;
+  extraData: {
+    listValues?: JsonFormSelectOptions[];
+    textAreaOptions?: JsonFormTextAreaOptions
+  }
 }
 export interface JsonFormData {
   controls: JsonFormControls[];

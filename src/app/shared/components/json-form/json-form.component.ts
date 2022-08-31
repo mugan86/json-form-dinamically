@@ -26,7 +26,7 @@ export class JsonFormComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.createForm(this.jsonFormData.controls);
-    
+    this.myForm.markAsUntouched();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -35,10 +35,9 @@ export class JsonFormComponent implements OnInit, OnChanges {
     }
   }
 
-  showElement = (type: string) => this.isText(type);
 
   // TODO Add variantes to check different types (combobox, select,...)
-  private isText(type: string) {
+  isText(type: string) {
     return (  [
       'text',
       'password',
@@ -49,6 +48,10 @@ export class JsonFormComponent implements OnInit, OnChanges {
       'url'
     ].includes(type))
   }
+
+  isTextArea = (type: string) => type === 'textarea';
+
+  isDropdown = (type: string) => type === 'dropdown';
 
 
   createForm(controls: JsonFormControls[]) {
@@ -105,5 +108,18 @@ export class JsonFormComponent implements OnInit, OnChanges {
   onSubmit() {
     console.log('Form valid: ', this.myForm.valid);
     console.log('Form values: ', this.myForm.value);
+    console.log('Form Errors: ', this.myForm);
+  }
+
+  get form() {
+    return this.myForm.controls;
+  }
+
+  hasFieldError(controlName: string): boolean {
+    return (
+      this.myForm?.get(controlName)!!.invalid &&
+      (this.myForm?.get(controlName)!!.dirty ||
+        this.myForm?.get(controlName)!!.touched)
+    );
   }
 }

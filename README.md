@@ -25,3 +25,11 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## References:
+
+https://www.tektutorialshub.com/angular/how-to-add-validators-dynamically-using-setvalidators-in-angular/
+
+https://medium.com/ngx/3-ways-to-implement-conditional-validation-of-reactive-forms-c59ed6fc3325
+
+https://stackblitz.com/edit/angular-conditional-validators-3rd-workaround-5-c-mdc1gs?file=src%2Fapp%2Fapp.component.ts

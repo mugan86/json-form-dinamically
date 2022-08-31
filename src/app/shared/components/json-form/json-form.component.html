@@ -3,12 +3,39 @@
     <label>{{ control.label }}</label><br />
     <input
       *ngIf="
-        showElement(control.type)
+        isText(control.type)
         "
       [type]="control.type"
       [formControlName]="control.name"
       [value]="control.value"
     />
+    <textarea
+      *ngIf="isTextArea(control.type)"
+      [formControlName]="control.name"
+      [id]="control.name"
+      [value]="control.value"
+      [cols]="control.extraData.textAreaOptions?.cols"
+      [rows]="control.extraData.textAreaOptions?.rows"
+    ></textarea>
+
+    <select
+      *ngIf="isDropdown(control.type)"
+      [id]="control.name"
+      [formControlName]="control.name"
+    >
+      <option *ngFor="let opt of control?.extraData?.listValues" [value]="opt.value">
+        {{ opt?.label }}
+      </option>
+    </select>
+    {{ hasFieldError(control.name)}} 
+    
+    <br/> Error (required): {{ form[control.name].errors?.['required'] || false}}
+    Error (MinLength): {{ form[control.name].errors?.['minLength'] || false }}
+    <section class="errorMessage" *ngIf="hasFieldError(control.name)">
+      <div *ngIf="form['firstName'].errors?.['required']">
+        {{ control.label }} is required
+      </div>
+    </section>
   </div>
   <br />
   <button type="submit">Submit</button>
