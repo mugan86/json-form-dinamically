@@ -64,6 +64,7 @@ export const FORM_DATA = {
 })
 export class AppComponent {
   title = 'reusable-form';
+  option = 1;
   public formData!: JsonFormData;
   constructor(private http: HttpClient) {}
   ngOnInit() {

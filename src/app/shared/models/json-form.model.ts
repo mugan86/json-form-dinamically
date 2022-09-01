@@ -26,6 +26,18 @@ interface JsonFormTextAreaOptions {
   rows?: number;
 }
 
+interface JsonFormValidatorsMessages {
+  min?: string;
+  max?: string;
+  required?: string;
+  requiredTrue?: string;
+  email?: string;
+  minLength?: string;
+  maxLength?: string;
+  pattern?: string;
+  nullValidator?: string;
+}
+
 export interface JsonFormControls {
   name: string;
   label: string;
@@ -34,13 +46,19 @@ export interface JsonFormControls {
   options?: JsonFormControlOptions;
   required: boolean;
   validators: JsonFormValidators;
+  validatorsMessage?: JsonFormValidatorsMessages;
   extraData: {
     listValues?: JsonFormSelectOptions[];
-    textAreaOptions?: JsonFormTextAreaOptions
+    textAreaOptions?: JsonFormTextAreaOptions;
+  };
+  space: {
+    label: number;
+    field: number;
   }
 }
 export interface JsonFormData {
   controls: JsonFormControls[];
+  blocks?: any
 }
 
 export enum EFormValidator {
@@ -54,3 +72,24 @@ export enum EFormValidator {
   REQUIRED = 'required',
   REQUIRED_TRUE = 'requiredTrue',
 }
+
+export enum EFieldTypes {
+  TEXT = 'text',
+  PASSWORD = 'password',
+  EMAIL = 'email',
+  NUMBER = 'number',
+  SEARCH = 'search',
+  TEL = 'tel',
+  URL = 'url',
+  TEXTAREA = 'textarea',
+  DROPDOWN = 'dropdown'
+}
+
+export const TEXT_FIELDS: Array<string> = [
+  EFieldTypes.EMAIL,
+  EFieldTypes.PASSWORD,
+  EFieldTypes.SEARCH,
+  EFieldTypes.TEL,
+  EFieldTypes.TEXT,
+  EFieldTypes.URL
+];

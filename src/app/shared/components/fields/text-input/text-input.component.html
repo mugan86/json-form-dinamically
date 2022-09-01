@@ -1,0 +1,11 @@
+<div [formGroup]="myForm" class="col-lg-9">
+  <input
+    [type]="control.type"
+    [formControlName]="control.name"
+    [value]="control.value"
+    class="form-control"
+    [ngClass]="{
+              'is-invalid': hasFieldError(control.name)
+            }"
+  />
+</div>

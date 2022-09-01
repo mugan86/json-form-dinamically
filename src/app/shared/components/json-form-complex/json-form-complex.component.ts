@@ -1,28 +1,14 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {
-  EFieldTypes,
-  EFormValidator,
-  JsonFormControls,
-  JsonFormData,
-  TEXT_FIELDS,
-} from '@app/shared/models/json-form.model';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { JsonFormData } from '@app/shared/models/json-form.model';
 import { FormService } from '@app/shared/services/form.service';
 
 @Component({
-  selector: 'app-json-form',
-  templateUrl: './json-form.component.html',
-  styleUrls: ['./json-form.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  selector: 'app-json-form-complex',
+  templateUrl: './json-form-complex.component.html',
+  styleUrls: ['./json-form-complex.component.css']
 })
-export class JsonFormComponent implements OnInit, OnChanges {
+export class JsonFormComplexComponent implements OnInit, OnChanges {
   @Input() jsonFormData!: JsonFormData;
   myForm: FormGroup = this.formService.form;
   constructor(public formService: FormService) {}
@@ -31,6 +17,7 @@ export class JsonFormComponent implements OnInit, OnChanges {
     // this.createForm(this.jsonFormData.controls);
     this.formService.createForm(this.jsonFormData.controls);
     this.myForm.markAsUntouched();
+    console.log(this.jsonFormData.blocks);
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -56,4 +43,5 @@ export class JsonFormComponent implements OnInit, OnChanges {
         this.myForm?.get(controlName)!!.touched)
     );
   }
+
 }

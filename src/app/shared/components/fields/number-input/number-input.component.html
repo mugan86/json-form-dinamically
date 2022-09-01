@@ -1,0 +1,6 @@
+<div [formGroup]="myForm">
+  <input [type]="'text'" [formControlName]="control.name" [value]="control.value" appAllowOnlyNumbers
+    maxlength="{{control.validators['maxLength'] || -1}}" class="form-control" [ngClass]="{
+            'is-invalid': hasFieldError(control.name)
+          }" />
+</div>

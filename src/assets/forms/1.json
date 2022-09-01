@@ -1,4 +1,100 @@
 {
+  "blocks": [
+    {
+      "config": {
+        "orientation": "default",
+        "whiteSpace": {
+          "left": "",
+          "right": ""
+        },
+        "controls": [
+          {
+            "name": "name",
+            "label": "Name:",
+            "value": "",
+            "type": "text",
+            "validators": {
+              "required": true,
+              "minLength": 10
+            },
+            "validatorsMessage": {
+              "required": "Es necesario que añadamos el nombre",
+              "minLength": "El nombre tiene que tener mínimo 10 carácteres"
+            },
+            "space": {
+              "label": "3",
+              "field": "9"
+            }
+          },
+          {
+            "name": "lastname",
+            "label": "apellidos:",
+            "value": "",
+            "type": "text",
+            "validators": {
+              "required": true,
+              "minLength": 10
+            },
+            "validatorsMessage": {
+              "required": "Es necesario que añadamos el nombre",
+              "minLength": "El nombre tiene que tener mínimo 10 carácteres"
+            },
+            "space": {
+              "label": "3",
+              "field": "9"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "config": {
+        "orientation": "horizontal",
+        "whiteSpace": {
+          "left": "",
+          "right": ""
+        },
+        "controls": [
+          {
+            "name": "alias",
+            "label": "Alias:",
+            "value": "",
+            "type": "text",
+            "validators": {
+              "required": true,
+              "minLength": 4
+            },
+            "validatorsMessage": {
+              "required": "Es necesario que añadamos el alias",
+              "minLength": "El nombre tiene que tener mínimo 4 carácteres"
+            },
+            "space": {
+              "label": "2",
+              "field": "4"
+            }
+          },
+          {
+            "name": "alias2",
+            "label": "Alias2:",
+            "value": "",
+            "type": "text",
+            "validators": {
+              "required": true,
+              "minLength": 4
+            },
+            "validatorsMessage": {
+              "required": "Es necesario que añadamos el alias",
+              "minLength": "El nombre tiene que tener mínimo 4 carácteres"
+            },
+            "space": {
+              "label": "2",
+              "field": "4"
+            }
+          }
+        ]
+      }
+    }
+  ],
   "controls": [
     {
       "name": "firstName",
@@ -8,6 +104,10 @@
       "validators": {
         "required": true,
         "minLength": 10
+      },
+      "validatorsMessage": {
+        "required": "Es necesario que añadamos el nombre",
+        "minLength": "El nombre tiene que tener mínimo 10 carácteres"
       }
     },
     {
@@ -16,6 +116,20 @@
       "value": "",
       "type": "text",
       "validators": {}
+    },
+    {
+      "name": "phone",
+      "label": "Teléfono:",
+      "value": "999999999",
+      "type": "number",
+      "validators": {
+        "required": true,
+        "maxLength": 9
+      },
+      "validatorsMessage": {
+        "required": "Es necesario que añadamos el teléfono",
+        "maxLength": "Máximo 9 números"
+      }
     },
     {
       "name": "comments",
@@ -30,6 +144,9 @@
       },
       "validators": {
         "required": true
+      },
+      "validatorsMessage": {
+        "required": "Es necesario que añadamos un comentario"
       }
     },
     {

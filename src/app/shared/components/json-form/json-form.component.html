@@ -1,42 +1,44 @@
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-  <div *ngFor="let control of jsonFormData?.controls">
-    <label>{{ control.label }}</label><br />
-    <input
-      *ngIf="
-        isText(control.type)
-        "
-      [type]="control.type"
-      [formControlName]="control.name"
-      [value]="control.value"
-    />
-    <textarea
-      *ngIf="isTextArea(control.type)"
-      [formControlName]="control.name"
-      [id]="control.name"
-      [value]="control.value"
-      [cols]="control.extraData.textAreaOptions?.cols"
-      [rows]="control.extraData.textAreaOptions?.rows"
-    ></textarea>
+  <div class="container">
+    <div class="row mb-3" *ngFor="let control of jsonFormData?.controls">
+      <label class="col-lg-3">{{ control.label }}</label><br />
 
-    <select
-      *ngIf="isDropdown(control.type)"
-      [id]="control.name"
-      [formControlName]="control.name"
-    >
-      <option *ngFor="let opt of control?.extraData?.listValues" [value]="opt.value">
-        {{ opt?.label }}
-      </option>
-    </select>
-    {{ hasFieldError(control.name)}} 
-    
-    <br/> Error (required): {{ form[control.name].errors?.['required'] || false}}
-    Error (MinLength): {{ form[control.name].errors?.['minLength'] || false }}
-    <section class="errorMessage" *ngIf="hasFieldError(control.name)">
-      <div *ngIf="form['firstName'].errors?.['required']">
-        {{ control.label }} is required
-      </div>
-    </section>
+      <app-text-input class="col-lg-9" *ngIf="formService.isText(control.type)" [myForm]="myForm" [control]="control">
+      </app-text-input>
+
+      <app-number-input *ngIf="formService.isNumber(control.type)" [myForm]="myForm" [control]="control">
+      </app-number-input>
+      <textarea *ngIf="formService.isTextArea(control.type)" [formControlName]="control.name" [id]="control.name"
+        [value]="control.value" [cols]="control.extraData.textAreaOptions?.cols"
+        [rows]="control.extraData.textAreaOptions?.rows" class="form-control" [ngClass]="{
+            'is-invalid': hasFieldError(control.name)
+          }"></textarea>
+
+      <select *ngIf="formService.isDropdown(control.type)" [id]="control.name" [formControlName]="control.name">
+        <option *ngFor="let opt of control?.extraData?.listValues" [value]="opt.value">
+          {{ opt?.label }}
+        </option>
+      </select>
+      <section class="errorMessage alert alert-danger" *ngIf="hasFieldError(control.name)">
+        <div *ngIf="form[control.name].errors?.['required']">
+          {{ control.validatorsMessage?.required }}
+        </div>
+        <div *ngIf="form[control.name].errors?.['minlength']">
+          {{ control.validatorsMessage?.minLength }}
+        </div>
+        <div *ngIf="form[control.name].errors?.['pattern']">
+          {{ control.label }} pattern error
+        </div>
+      </section>
+    </div>
   </div>
+
   <br />
   <button type="submit">Submit</button>
 </form>
+
+<ng-template #textDropDown>
+  dropdown
+</ng-template>
+
+<ng-template #textAreaInput>textArea</ng-template>

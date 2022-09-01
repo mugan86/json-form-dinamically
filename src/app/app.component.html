@@ -1,2 +1,12 @@
+<app-json-form
+  *ngIf="formData && option === 1"
+  [jsonFormData]="formData"
+></app-json-form>
 
-<app-json-form *ngIf="formData" [jsonFormData]="formData"></app-json-form>
+
+
+
+<app-json-form-complex
+  *ngIf="formData && option === 2"
+  [jsonFormData]="formData"
+></app-json-form-complex>

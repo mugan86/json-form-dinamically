@@ -1,0 +1,61 @@
+<p>{{ jsonFormData['blocks'] | json}}</p>
+<div class="container">
+  <div *ngFor="let block of jsonFormData['blocks']; let i = index">
+    <hr/>
+    Bloque {{i + 1}} - {{ block.config.orientation }}
+    <hr />
+    <div *ngIf="block.config.orientation !== 'horizontal'; else horizontal">
+      <div class="row mb-3" *ngFor="let element of block.config.controls">
+        <label
+        class="col-sm-{{element.space.label}} col-form-label"
+        >{{ element.label }}</label
+      >
+      <div class="col-sm-{{element.space.field}}">
+        <input
+          *ngIf="formService.isText(element.type)"
+          [value]="element.value"
+          class="form-control"
+        />
+      </div>
+      </div>
+      
+    </div>
+    <ng-template #horizontal>
+      <div *ngFor="let element of block.config.controls">
+        {{ element | json }}
+      </div>
+    </ng-template>
+   
+    
+  </div>
+</div>
+
+<div class="row">
+  <label></label>
+</div>
+
+<!--{{ jsonFormData['blocks'].length }}
+    <div *ngFor="let block of jsonFormData['blocks']; let i = index">
+      Bloque {{i + 1}}
+      <div *ngFor="let element of block" class="row mb-3" >
+        
+        <label class="col-sm-{{element.space.label}} col-form-label">{{ element.label }}</label>
+        <div class="col-sm-{{element.space.field}}">
+          <input
+          *ngIf="isText(element.type)"
+          [type]="element.type"
+          [formControlName]="element.name"
+          [value]="element.value"
+          class="form-control"
+          
+        />
+        </div>
+       
+      </div>
+      
+        <label class="col-sm-{{block.space.label}} col-form-label">{{ block.control.label }}</label><br />
+      <div class="col-sm">
+      </div>
+      
+    </div>
+    ------<br/>-->

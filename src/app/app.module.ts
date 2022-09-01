@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { JsonFormModule } from '@shared/components/json-form/json-form.module';
 import { HttpClientModule } from '@angular/common/http';
+import { JsonFormComplexModule } from './shared/components/json-form-complex/json-form-complex.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     HttpClientModule,
-    JsonFormModule
+    JsonFormModule,
+    JsonFormComplexModule
   ],
   providers: [],
   bootstrap: [AppComponent]
